@@ -7,7 +7,15 @@ public class BoidFollower : MonoBehaviour
     public Transform target; // The target player to follow
     public float speed = 5f; // The speed at which the Boids will move
     public float collisionRadius = 0.5f; // The radius to use for collision detection
-    private List<Transform> otherBoids; // A list of the other Boid followers
+    [SerializeField] private List<Transform> otherBoids; // A list of the other Boid followers
+
+    private void Start()
+    {
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            otherBoids.Add(transform.GetChild(i).transform);
+        }
+    }
 
     // A function to detect and avoid collisions with other Boids and the player
     private void AvoidCollision()
