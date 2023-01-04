@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
+    private float testTimer = 3;
     void Start()
     {
         
@@ -11,10 +12,15 @@ public class Actor : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
-    public void Reset()
+    public void ResetActor()
+    {
+
+    }
+
+    public void DestroyActor()
     {
 
     }

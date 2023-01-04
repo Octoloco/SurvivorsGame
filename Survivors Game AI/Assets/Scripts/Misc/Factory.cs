@@ -58,7 +58,7 @@ public class Factory : MonoBehaviour
         itemToDestroy.SetActive(false);
         if (itemToDestroy.GetComponent<Actor>())
         {
-            itemToDestroy.GetComponent<Actor>().Reset();
+            itemToDestroy.GetComponent<Actor>().ResetActor();
         }
         avaibleItems.Add(itemToDestroy);
     }
