@@ -16,8 +16,6 @@ public class Actor : MonoBehaviour
 
     public void Reset()
     {
-        GameObject temp;
-        GameObject temp;
-        GameObject temp;
+
     }
 }
