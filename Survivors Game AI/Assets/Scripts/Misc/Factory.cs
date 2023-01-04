@@ -41,15 +41,17 @@ public class Factory : MonoBehaviour
             finalItem = avaibleItems[0];
             finalItem.SetActive(true);
             avaibleItems.Remove(finalItem);
+            finalItem.transform.parent = null;
         }
         else
         {
             GameObject temp = Instantiate(item, Vector3.zero, Quaternion.identity);
-            temp.transform.parent = transform;
+            temp.transform.parent = null;
             temp.SetActive(true);
 
             finalItem = temp;
         }
+        finalItem.GetComponent<Actor>().ResetActor();
         finalItem.GetComponent<Actor>().ActivateActor();
         return finalItem;
     }

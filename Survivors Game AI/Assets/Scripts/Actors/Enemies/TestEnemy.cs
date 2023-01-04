@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TestEnemy : Enemy
 {
-    private GameObject target;
-    private Vector2 direction;
+    public GameObject target;
+    public Vector2 direction;
 
     void Start()
     {
