@@ -73,6 +73,6 @@ public class Weapon : MonoBehaviour
             finalDamage = damage - affectedStatSheet.magicDefense;
         }
 
-        affectedStatSheet.health -= finalDamage;
+        affectedStatSheet.health -= Mathf.CeilToInt( finalDamage );
     }
 }
