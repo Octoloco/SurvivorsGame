@@ -40,9 +40,18 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public virtual void ActivateActor( )
+    {
+        GlobalManagers.actorManager.RegisterActor( this );
+    }
+
+    public virtual void DeactivateActor( )
+    {
+        GlobalManagers.actorManager.ReleaseActor( this );
+    }
+
     public virtual void ResetActor()
     {
-
     }
 
     public void DestroyActor()
