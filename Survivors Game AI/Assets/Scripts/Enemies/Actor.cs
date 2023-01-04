@@ -18,5 +18,6 @@ public class Actor : MonoBehaviour
     {
         GameObject temp;
         GameObject temp;
+        GameObject temp;
     }
 }
