@@ -8,6 +8,11 @@ public class Factory : MonoBehaviour
     [SerializeField] private int numberOfAvailbaleItems;
     private List<GameObject> avaibleItems = new List<GameObject>();
 
+    private void Awake()
+    {
+        InitializeFactory();
+    }
+
     private void InitializeFactory()
     {
         if (item != null)
@@ -17,6 +22,8 @@ public class Factory : MonoBehaviour
             {
                 temp = Instantiate(item, Vector3.zero, Quaternion.identity);
                 temp.transform.parent = transform;
+                temp.SetActive(false);
+                avaibleItems.Add(temp);
             }
         }
         else
@@ -27,7 +34,32 @@ public class Factory : MonoBehaviour
 
     public GameObject CreateItem()
     {
-        
-        return null;
+        GameObject finalItem = null;
+
+        if (avaibleItems.Count != 0)
+        {
+            finalItem = avaibleItems[0];
+            finalItem.SetActive(true);
+            avaibleItems.Remove(finalItem);
+        }
+        else
+        {
+            GameObject temp = Instantiate(item, Vector3.zero, Quaternion.identity);
+            temp.transform.parent = transform;
+            temp.SetActive(true);
+
+            finalItem = temp;
+        }
+        return finalItem;
+    }
+
+    public void DestroyItem(GameObject itemToDestroy)
+    {
+        itemToDestroy.SetActive(false);
+        if (itemToDestroy.GetComponent<Actor>())
+        {
+            itemToDestroy.GetComponent<Actor>().Reset();
+        }
+        avaibleItems.Add(itemToDestroy);
     }
 }
