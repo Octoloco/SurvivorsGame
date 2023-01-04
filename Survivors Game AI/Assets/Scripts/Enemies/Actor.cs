@@ -7,7 +7,6 @@ public class Actor : MonoBehaviour
     [SerializeField] private StatsSO statSheet; 
 
     private int currentHealth;
-    private float testTimer = 3;
 
     void Start()
     {

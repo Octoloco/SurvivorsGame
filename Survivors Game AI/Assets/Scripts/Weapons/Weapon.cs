@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [Header("Weapon Stats")]
-    [SerializeField] private float damage = 0;
+    [SerializeField] private int damage = 0;
     [SerializeField] private float activationRate = 0;
     [SerializeField] private bool phisicalDamage = true;
     [SerializeField] private int maxLevel = 0;
@@ -62,7 +62,7 @@ public class Weapon : MonoBehaviour
 
     public void DealDamage(StatsSO affectedStatSheet)
     {
-        float finalDamage;
+        int finalDamage;
 
         if (phisicalDamage)
         {
