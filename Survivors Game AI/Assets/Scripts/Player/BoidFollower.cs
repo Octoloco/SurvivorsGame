@@ -15,6 +15,8 @@ public class BoidFollower : MonoBehaviour
 
     private void Update()
     {
+        
+
         // Calculate the distance between the Boid and the target player
         float distance = Vector2.Distance(transform.position, target.position);
 
