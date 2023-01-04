@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private Vector2 dimensions0;
-    private Vector2 dimensions1;
-    private float timer = 0;
-
+    private float timer;
+    
+    [SerializeField] private float scaleFactor;
     [SerializeField] private Factory EnemyFactory;
     [SerializeField] private float startTime;
 
     void Start()
     {
-        dimensions0 = new Vector2(0 - (transform.localScale.x/2), 0 - (transform.localScale.y / 2));
-        dimensions1 = new Vector2(0 + (transform.localScale.x/2), 0 + (transform.localScale.y / 2));
+        timer = startTime;
     }
 
     void Update()
@@ -33,39 +31,40 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject temp = EnemyFactory.CreateItem();
-        Vector2 position;
-        if (Random.Range((int)0, (int)2) == 0)
+        Vector2 position = Vector2.zero;
+        int placement = Random.Range((int)0, (int)4);
+
+        switch (placement)
         {
-            position.x = Random.Range(dimensions0.x, dimensions1.x);
-            if (Random.Range((int)0, (int)2) == 0)
-            {
-                position.y = dimensions0.y;
-            }
-            else
-            {
-                position.y = dimensions1.y;
-            }
-        }
-        else
-        {
-            if (Random.Range((int)0, (int)2) == 0)
-            {
-                position.x = dimensions0.x;
-            }
-            else
-            {
-                position.x = dimensions1.x;
-            }
-            position.y = Random.Range(dimensions0.y, dimensions1.y);
+            case 0:
+                position.x = Random.Range(transform.position.x - Camera.main.orthographicSize * Camera.main.aspect * scaleFactor, transform.position.x + Camera.main.orthographicSize * Camera.main.aspect * scaleFactor);
+                position.y = transform.position.y - Camera.main.orthographicSize * scaleFactor;
+                break;
+
+            case 1:
+                position.x = Random.Range(transform.position.x - Camera.main.orthographicSize * Camera.main.aspect * scaleFactor, transform.position.x + Camera.main.orthographicSize * Camera.main.aspect * scaleFactor);
+                position.y = transform.position.y + Camera.main.orthographicSize * scaleFactor;
+                break;
+
+            case 2:
+                position.y = Random.Range(transform.position.y - Camera.main.orthographicSize * scaleFactor, transform.position.y + Camera.main.orthographicSize * scaleFactor);
+                position.x = transform.position.x - Camera.main.orthographicSize * Camera.main.aspect * scaleFactor;
+                break;
+
+            case 3:
+                position.y = Random.Range(transform.position.y - Camera.main.orthographicSize * scaleFactor, transform.position.y + Camera.main.orthographicSize * scaleFactor);
+                position.x = transform.position.x + Camera.main.orthographicSize * Camera.main.aspect * scaleFactor;
+                break;
         }
 
         temp.transform.position = position;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireCube(transform.position, transform.localScale);
+        Gizmos.DrawWireCube(transform.position, new Vector3(Camera.main.orthographicSize * Camera.main.aspect * 2 * scaleFactor, Camera.main.orthographicSize * 2 * scaleFactor));
+            
     }
 }

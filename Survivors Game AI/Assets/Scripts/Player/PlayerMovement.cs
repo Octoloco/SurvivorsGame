@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (instance == null)
         {
-            instance = new PlayerMovement();
+            instance = this;
         }
         else
         {
