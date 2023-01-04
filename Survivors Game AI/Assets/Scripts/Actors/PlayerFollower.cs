@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class PlayerFollower : Actor
 {
+    private void Start( )
+    {
+        ActivateActor();
+    }
 }
