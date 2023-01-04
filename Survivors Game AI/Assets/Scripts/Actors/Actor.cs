@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
-    [SerializeField] private StatsSO statSheet; 
+    [SerializeField] protected StatsSO statSheet; 
 
-    private int currentHealth;
+    protected int currentHealth;
 
     void Start()
     {

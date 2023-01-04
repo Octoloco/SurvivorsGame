@@ -8,6 +8,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private StatsSO statSheet;
     private PlayerInputActions inputActions;
+    public static PlayerMovement instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = new PlayerMovement();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnEnable()
     {
