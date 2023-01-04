@@ -50,6 +50,7 @@ public class Factory : MonoBehaviour
 
             finalItem = temp;
         }
+        finalItem.GetComponent<Actor>().ActivateActor();
         return finalItem;
     }
 
@@ -59,6 +60,7 @@ public class Factory : MonoBehaviour
         if (itemToDestroy.GetComponent<Actor>())
         {
             itemToDestroy.GetComponent<Actor>().ResetActor();
+            itemToDestroy.GetComponent<Actor>().DeactivateActor();
         }
         avaibleItems.Add(itemToDestroy);
     }
